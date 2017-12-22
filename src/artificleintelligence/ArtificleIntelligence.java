@@ -29,23 +29,10 @@ public class ArtificleIntelligence{
        Map<Integer,String> body = new HashMap<Integer,String>();
        List<Map<Integer,String>> BODY_OF_VALUE = new ArrayList<Map<Integer,String>>();
        
-       //header.put(0, "weekend");
        header.put(0, "weather");
        header.put(1, "parents");
        header.put(2, "money");
        header.put(3, "decision");
-       
-      /* body.put(0, "w1");
-       body.put(1, "w2");
-       body.put(2, "w3");
-       body.put(3, "w4");
-       body.put(4, "w5");
-       body.put(5, "w6");
-       body.put(6, "w7");
-       body.put(7, "w8");
-       body.put(8, "w9");
-       body.put(9, "w10");
-       BODY_OF_VALUE.add(body);*/
        
        body = new HashMap<Integer,String>();
        body.put(0, "SUNNY");
@@ -147,46 +134,36 @@ public class ArtificleIntelligence{
         System.out.println("body size:"+body.size());
         if(!(entropy_value == 0.0)){
             if(body.size()>1){
-        for(int i = 0;i<body.size();i++){
-            altKokler = new ArrayList<Map<Integer,String>>();
-            int icerikSayisi =gecici.get(buyuk_sutun_no).size()-1, eleman_sirasi =0;
-            for(int j = 0; j<=icerikSayisi; j++){
-                if(body.get(i).equals(gecici.get(buyuk_sutun_no).get(j))){
-                    for(int k = 0; k<gecici.size();k++){
-                        //gecici.get(k).remove(j);
-                        if(altKokler.size()<gecici.size()){
-                            Map<Integer,String> veri = new HashMap<Integer,String>();
-                            veri.put(eleman_sirasi, gecici.get(k).get(j));
-                            altKokler.add(k,veri);
-                        }
-                        else{
-                            altKokler.get(k).put(eleman_sirasi,gecici.get(k).get(j));
+                for(int i = 0;i<body.size();i++){
+                    altKokler = new ArrayList<Map<Integer,String>>();
+                    int icerikSayisi =gecici.get(buyuk_sutun_no).size()-1, eleman_sirasi =0;
+                    for(int j = 0; j<=icerikSayisi; j++){
+                        if(body.get(i).equals(gecici.get(buyuk_sutun_no).get(j))){
+                            for(int k = 0; k<gecici.size();k++){
+                                if(altKokler.size()<gecici.size()){
+                                    Map<Integer,String> veri = new HashMap<Integer,String>();
+                                    veri.put(eleman_sirasi, gecici.get(k).get(j));
+                                    altKokler.add(k,veri);
+                                }
+                                else{
+                                    altKokler.get(k).put(eleman_sirasi,gecici.get(k).get(j));
+                                }
+                            }
+                            eleman_sirasi++;
                         }
                     }
-                    eleman_sirasi++;
-                }
-                /*else{
-                    for(int k = 0; k<gecici.size();k++){
-                        String veri = gecici.get(k).get(j);
-                        gecici.get(k).remove(j);
-                        gecici.get(k).put(eleman_sirasi, veri);
+                    if(altKokler.get(0).size()>0){
+                        System.out.println("Alt kok için bulunan veri seti :"+altKokler);
+                        kokler_bul(altKokler,header);
                     }
-                    
-                }*/
-                //System.out.println("Silinmiş hali "+j+" :"+altKokler);
-            }
-            if(altKokler.get(0).size()>0){
-                System.out.println("Alt kok için bulunan veri seti :"+altKokler);
-                kokler_bul(altKokler,header);
-            }
-            else{
-                for(int j = 0; j< altKokler.size();j++){
-                    System.out.print(altKokler.get(j)+" iken ");
+                    else{
+                        for(int j = 0; j< altKokler.size();j++){
+                            System.out.print(altKokler.get(j)+" iken ");
+                        }
+                        System.out.println("");
+                    }
                 }
-                System.out.println("");
             }
-        }
-        }
         }
         BODY_OF_VALUE.remove(buyuk_sutun_no);
         
